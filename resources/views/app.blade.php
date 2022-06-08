@@ -18,10 +18,13 @@
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
-        @inertia
+        <noscript>
+            <strong
+              >We're sorry but {{env('APP_NAME')}} doesn't work properly without JavaScript
+              enabled. Please enable it to continue.
+        </strong>
+          </noscript>
 
-        @env ('local')
-            <script src="http://localhost:8080/js/bundle.js"></script>
-        @endenv
+        @inertia
     </body>
 </html>

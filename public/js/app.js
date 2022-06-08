@@ -27376,7 +27376,7 @@ var _hoisted_2 = [_hoisted_1];
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "javascript:void(0);",
-  "class": "block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
+  "class": "block w-full px-8 py-2 text-sm font-normal bg-transparent hover:text-white whitespace-nowrap text-blueGray-700 hover:bg-blue-500"
 }, " Profile ", -1
 /* HOISTED */
 );
@@ -27409,7 +27409,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }])
   }, [_hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     href: _ctx.route('logout'),
-    "class": "block w-full px-4 py-2 text-sm font-normal bg-transparent cursor-pointer whitespace-nowrap text-blueGray-700",
+    "class": "block w-full px-8 py-2 text-sm font-normal bg-transparent cursor-pointer whitespace-nowrap text-blueGray-700 hover:text-white hover:bg-blue-500",
     method: "post",
     as: "link"
   }, {

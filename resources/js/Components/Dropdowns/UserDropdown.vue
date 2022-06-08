@@ -24,13 +24,14 @@
     >
       <a
         href="javascript:void(0);"
-        class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
+        class="block w-full px-8 py-2 text-sm font-normal bg-transparent hover:text-white whitespace-nowrap text-blueGray-700 hover:bg-blue-500"
       >
         Profile
       </a>
+
       <div class="h-0 my-2 border border-solid border-blueGray-100" />
 
-        <Link :href="route('logout')" class="block w-full px-4 py-2 text-sm font-normal bg-transparent cursor-pointer whitespace-nowrap text-blueGray-700" method="post" as="link">Log Out</Link>
+        <Link :href="route('logout')" class="block w-full px-8 py-2 text-sm font-normal bg-transparent cursor-pointer whitespace-nowrap text-blueGray-700 hover:text-white hover:bg-blue-500" method="post" as="link">Log Out</Link>
     </div>
   </div>
 </template>

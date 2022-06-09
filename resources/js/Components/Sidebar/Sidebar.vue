@@ -80,12 +80,12 @@
         <!-- Navigation -->
 
         <ul class="flex flex-col list-none md:flex-col md:min-w-full">
-          <li class="items-center">
+          <!-- <li class="items-center">
             <a
               to="/admin/dashboard"
 
             >
-              <a
+               <a
                 :href="href"
                 @click="navigate"
                 class="block py-3 text-xs font-bold uppercase"
@@ -101,7 +101,18 @@
                 ></i>
                 Dashboard
               </a>
+
             </a>
+          </li> -->
+          <li class="items-center">
+             <Link :href="route('dashboard')" class="block py-3 text-xs font-bold uppercase"
+               :class="{ 'text-emerald-500 hover:text-emerald-600 ': $page.url === '/dashboard' }">
+                <i
+                  class="mr-2 text-sm fas fa-tv"
+                  :class="{ 'opacity-75 ': $page.url === '/dashboard' }"
+                ></i>
+              Dashboard
+             </Link>
           </li>
 
           <li class="items-center">
@@ -350,6 +361,7 @@
 import NotificationDropdown from "@/components/Dropdowns/NotificationDropdown.vue";
 import UserDropdown from "@/components/Dropdowns/UserDropdown.vue";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import { Link } from "@inertiajs/inertia-vue3";
 export default {
   data() {
     return {
@@ -365,7 +377,15 @@ export default {
     NotificationDropdown,
     UserDropdown,
     ApplicationLogo,
+    Link,
 
   },
 };
 </script>
+<style scoped>
+   .link-active{
+       opacity: 0.75;
+       --tw-text-opacity: 1;
+       color: rgb(203 213 225 / var(--tw-text-opacity));
+   }
+</style>

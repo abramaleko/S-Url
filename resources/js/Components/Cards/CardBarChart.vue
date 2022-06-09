@@ -1,20 +1,20 @@
 <template>
   <div
-    class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
+    class="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white rounded shadow-lg"
   >
-    <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+    <div class="px-4 py-3 mb-0 bg-transparent rounded-t">
       <div class="flex flex-wrap items-center">
-        <div class="relative w-full max-w-full flex-grow flex-1">
-          <h6 class="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
+        <div class="relative flex-1 flex-grow w-full max-w-full">
+          <h6 class="mb-1 text-xs font-semibold uppercase text-blueGray-400">
             Performance
           </h6>
-          <h2 class="text-blueGray-700 text-xl font-semibold">
+          <h2 class="text-xl font-semibold text-blueGray-700">
             Total orders
           </h2>
         </div>
       </div>
     </div>
-    <div class="p-4 flex-auto">
+    <div class="flex-auto p-4">
       <div class="relative h-350-px">
         <canvas id="bar-chart"></canvas>
       </div>
@@ -22,7 +22,7 @@
   </div>
 </template>
 <script>
-import Chart from "chart.js";
+import Chart from 'chart.js/auto';
 export default {
   mounted: function () {
     this.$nextTick(function () {

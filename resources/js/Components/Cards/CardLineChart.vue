@@ -1,20 +1,20 @@
 <template>
   <div
-    class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700"
+    class="relative flex flex-col w-full min-w-0 mb-6 break-words rounded shadow-lg bg-blueGray-700"
   >
-    <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+    <div class="px-4 py-3 mb-0 bg-transparent rounded-t">
       <div class="flex flex-wrap items-center">
-        <div class="relative w-full max-w-full flex-grow flex-1">
-          <h6 class="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
+        <div class="relative flex-1 flex-grow w-full max-w-full">
+          <h6 class="mb-1 text-xs font-semibold uppercase text-blueGray-100">
             Overview
           </h6>
-          <h2 class="text-white text-xl font-semibold">
+          <h2 class="text-xl font-semibold text-white">
             Sales value
           </h2>
         </div>
       </div>
     </div>
-    <div class="p-4 flex-auto">
+    <div class="flex-auto p-4">
       <!-- Chart -->
       <div class="relative h-350-px">
         <canvas id="line-chart"></canvas>
@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import Chart from "chart.js";
+import Chart from 'chart.js/auto';
 
 export default {
   mounted: function () {

@@ -14,12 +14,12 @@
         <i class="fas fa-bars"></i>
       </button>
       <!-- Brand -->
-      <a
+      <Link
         class="inline-block p-4 px-0 mr-0 text-sm font-bold text-left uppercase md:block md:pb-2 text-blueGray-600 whitespace-nowrap"
-        href="/"
+        :href="route('welcome-page')"
       >
       <application-logo/>
-      </a>
+      </Link>
       <!-- User -->
       <ul class="flex flex-wrap items-center list-none md:hidden">
         <li class="relative inline-block">

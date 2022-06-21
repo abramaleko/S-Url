@@ -4,7 +4,7 @@
 
         <Head title="New Url" />
 
-        <div class="mx-4 lg:mx-12 bg-blueGray-100">
+        <div class="mx-2 lg:mx-12 bg-blueGray-100">
             <div class="mt-6 mb-6 break-words bg-white border-0 rounded-lg shadow-lg lg:mt-20">
                 <div class="px-6 py-6 mb-0 bg-white rounded-t">
                     <div class="flex justify-between text-center">
@@ -32,7 +32,7 @@
                             <div class="relative flex flex-wrap items-stretch w-full mb-4">
                                 <div class="flex -mr-px bg-blueGray-200">
                                     <span
-                                        class="flex items-center px-3 text-sm leading-normal whitespace-no-wrap border border-r-0 rounded rounded-r-none bg-grey-lighter border-grey-light text-grey-dark">https://example.com/users/</span>
+                                        class="flex items-center px-3 text-sm leading-normal whitespace-no-wrap border border-r-0 rounded rounded-r-none bg-grey-lighter border-grey-light text-grey-dark">{{app_url}}url/</span>
                                 </div>
                                 <input type="text" v-model="form.short_url" @blur="checkUrlAvailabilty" id="short-url"
                                     class="relative flex-auto flex-grow flex-shrink w-px h-10 px-3 text-sm leading-normal border-0 rounded rounded-r shadow placeholder-blueGray-300 text-blueGray-600 focus:outline-none focus:ring"
@@ -95,6 +95,7 @@ export default {
     },
     props: {
         errors: Object,
+        app_url : String,
     },
     data() {
         return {
@@ -126,7 +127,7 @@ export default {
                 return false;
             }
 
-            form.post(route('url-save'));
+            this.form.post(route('url-save'));
         }
     }
 

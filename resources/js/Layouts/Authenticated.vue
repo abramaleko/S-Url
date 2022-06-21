@@ -16,7 +16,7 @@ export default {
 <template>
   <div>
     <sidebar />
-     <div class="relative md:ml-64 bg-blueGray-100">
+     <div class=" md:ml-64">
       <admin-navbar />
       <!-- Page Content -->
             <main>

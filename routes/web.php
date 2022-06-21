@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UrlController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,5 +28,22 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::prefix('/short-url')->group(function()
+{
+    Route::get('/new',[UrlController::class,'index'])->name('url-create');
+    Route::post('/save-url',[UrlController::class,'saveUrl'])->name('url-save');
+    Route::post('/url/check-availability', [UrlController::class,'checkAvailabilty'])->name('url-check-availabilty');
+
+    Route::get('/all',[UrlController::class,'allUrls'])->name('url-all');
+});
+
+
+//all short url routes
+Route::prefix('/url')->group(function(){
+
+
+});
 
 require __DIR__.'/auth.php';

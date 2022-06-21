@@ -7,12 +7,6 @@
       class="flex flex-wrap items-center justify-between w-full px-4 mx-autp md:flex-nowrap md:px-10"
     >
       <!-- Brand -->
-      <a
-        class="hidden text-sm font-semibold text-white uppercase lg:inline-block"
-        href="javascript:void(0)"
-      >
-        Dashboard
-      </a>
       <!-- Form -->
       <form
         class="flex-row flex-wrap items-center hidden mr-3 md:flex lg:ml-auto"

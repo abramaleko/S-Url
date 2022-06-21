@@ -26,7 +26,7 @@ export default {
     <AuthLayout>
         <HeaderStats/>
 
-    <div class="w-full px-4 mx-auto -m-24 md:px-10">
+    <div class="w-full px-4 mx-auto -m-24 md:px-10 bg-blueGray-100">
     <div>
     <div class="flex flex-wrap">
       <div class="w-full px-4 mb-12 xl:w-8/12 xl:mb-0">

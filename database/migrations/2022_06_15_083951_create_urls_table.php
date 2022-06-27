@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('short_url');
             $table->boolean('status')->dafault(true);
             $table->timestamp('expires_on')->nullable();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

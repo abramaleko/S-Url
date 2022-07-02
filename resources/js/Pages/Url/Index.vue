@@ -17,9 +17,6 @@
                 </div>
             </div>
             <div class="flex-auto px-4 py-10 pt-0 lg:px-10">
-
-            <success-alert v-if="$page.props.flash.message" :message="$page.props.flash.message" />
-
                 <form @submit.prevent="submit">
                     <h6 class="mt-3 mb-6 text-sm font-bold uppercase text-blueGray-400">
                         Url Info
@@ -55,9 +52,29 @@
                                 :class="{['border-2 border-red-500'] : errors.redirect_to}" />
                         </div>
                          <p class="text-sm font-bold text-red-500" v-if="errors.redirect_to">{{ errors.redirect_to }}</p>
+                         <p class="pt-1 text-xs font-semibold text-gray-500" v-if="errors.redirect_to">
+                            Make sure your redirect url starts with http::// or https://
+                         </p>
+                    </div>
+                    <div class="w-full px-4 mb-6 lg:w-12/12">
+                        <div class="relative w-full">
+                             <label class="block mb-2 text-xs font-bold uppercase text-blueGray-600"
+                                htmlFor="custom-input-number">
+                                    Expires after : (months)
+                                </label>
+                                  <div class="relative flex flex-row w-32 h-10 mt-1 rounded-lg bg- custom-number-input">
+                                    <button type="button" id="decrement" @click="decrement" class="w-20 h-full text-gray-600 bg-white rounded-l cursor-pointer focus:outline-none hover:text-white hover:bg-blue-400">
+                                    <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" v-model="form.number"  class="flex items-center w-full font-semibold text-center text-gray-700 bg-gray-100 border-none outline-none focus:outline-none text-md hover:text-black focus:text-black md:text-basecursor-default"  min="1" />
+                                <button type="button" @click="increment" class="w-20 h-full text-gray-600 bg-white rounded-r cursor-pointer hover:text-white hover:bg-blue-400">
+                                    <span class="m-auto text-2xl font-thin">+</span>
+                                </button>
+                                </div>
+                        </div>
                     </div>
 
-                    <div class="w-full px-4 mb-6 lg:w-12/12">
+                    <div class="w-full px-4 my-6 lg:w-12/12">
                         <button type="submit" :disabled="form.processing"
                             class="px-4 py-3 mr-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-blue-500 rounded shadow outline-none active:bg-emerald-600 hover:shadow-md focus:outline-none hover:bg-blue-400"
                             :class="{ 'opacity-25' : form.processing}">
@@ -90,6 +107,7 @@ export default {
         const form = useForm({
             short_url: null,
             redirect_to: null,
+            months: null,
         })
         return { form }
     },
@@ -122,15 +140,89 @@ export default {
         },
         submit() {
 
-            if (!this.form.short_url || !this.form.redirect_to) {
+
+            if (!this.form.short_url || !this.form.redirect_to || this.form.months == 0) {
                 alert("Please fill all inputs before submitting");
                 return false;
             }
 
-            this.form.post(route('url-save'));
-        }
-    }
+            if (this.form.months > 3) {
+              alert("Please upgrade to the premium version");
+              return false;
+            }
 
+            this.form.post(route('url-save'),{
+                        onFinish: () => this.form.reset(),
+            });
+
+        },
+
+        decrement(e) {
+        const btn = e.target.parentNode.parentElement.querySelector(
+        'button[id="decrement"]'
+        );
+        const target = btn.nextElementSibling;
+        let value = Number(target.value);
+        value--;
+        target.value = value < 0 ? 1 : value;
+        this.form.months=value < 0 ? 1 : value;
+       },
+      increment(e) {
+        const btn = e.target.parentNode.parentElement.querySelector(
+        'button[id="decrement"]'
+        );
+        const target = btn.nextElementSibling;
+        let value = Number(target.value);
+        value++;
+        target.value = value;
+        this.form.months=value < 0 ? 1 : value;
+      },
+
+    }
 }
+
+  const decrementButtons = document.querySelectorAll(
+    `button[data-action="decrement"]`
+  );
+
+  const incrementButtons = document.querySelectorAll(
+    `button[data-action="increment"]`
+  );
+
+  decrementButtons.forEach(btn => {
+    btn.addEventListener("click", decrement);
+  });
+
+  incrementButtons.forEach(btn => {
+    btn.addEventListener("click", increment);
+  });
 </script>
+
+<style scoped>
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .custom-number-input input:focus {
+    outline: none !important;
+  }
+
+  .custom-number-input button:focus {
+    outline: none !important;
+  }
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+</style>>
+
 

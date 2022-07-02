@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Urls;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use Symfony\Contracts\Service\Attribute\Required;
-
 class UrlController extends Controller
 {
     public function __construct()
@@ -17,7 +17,9 @@ class UrlController extends Controller
 
     public function index()
     {
-        return Inertia::render('Url/Index');
+        return Inertia::render('Url/Index',[
+            'app_url' => env('APP_URL')
+        ]);
     }
 
     public function checkAvailabilty(Request $request)
@@ -30,14 +32,22 @@ class UrlController extends Controller
 
     public function saveUrl(Request $request)
     {
-      $validatedData=$this->validate($request,[
+        $this->validate($request,[
         'short_url' => 'required|string',
-        'redirect_to' => 'required|string'
+        'redirect_to' => 'required|url',
+        'months' => 'required|integer'
       ]);
 
-      Urls::create($validatedData);
+      $expiredate=Carbon::now()->addMonth($request->months);
 
-      return Redirect::route('url-create')->with('message','Url Created Successfully');
+      $url=new Urls();
+      $url->short_url=$request->short_url;
+      $url->redirect_to=$request->redirect_to;
+      $url->expires_on=$expiredate;
+      $url->user_id=Auth::user()->id;
+      $url->save();
+
+      return Redirect::route('url-all');
 
     }
 
@@ -47,6 +57,40 @@ class UrlController extends Controller
             'urls' => Urls::orderBy('id','desc')->get()
         ]);
     }
+
+    public function urlDetails(Urls $url)
+    {
+        return Inertia::render('Url/Details',[
+            'url' => $url,
+        ]);
+    }
+
+    public function editUrl(Urls $url)
+    {
+        return Inertia::render('Url/Edit',[
+            'url' => $url,
+            'app_url' => env('APP_URL')
+        ]);
+    }
+
+    public function updateStatus(Request $request)
+    {
+         $url=Urls::find($request->id);
+         $url->status=$request->status;
+         $url->save();
+
+         return Redirect::route('url-details',$request->id)->with([
+             'url' => $url
+         ]);
+    }
+
+    public function deleteUrl(Urls $url)
+    {
+       $url->delete();
+       return Redirect::route('url-all');
+    }
+
+
 
     // public function redirectUrl(Urls $url)
     // {

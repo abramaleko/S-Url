@@ -1,13 +1,30 @@
-<script setup>
+<script>
  import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
- import { Head } from '@inertiajs/inertia-vue3';
-import { onMounted } from '@vue/runtime-core';
-    defineProps(['urls'])
+ import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Inertia } from '@inertiajs/inertia';
 
-    function counter(index=0)
+export default {
+  components: {
+      AuthenticatedLayout,Head,Link,
+  },
+  props:{
+      urls: Object,
+  },
+  methods:{
+      deleteUrl(id){
+         if (confirm('Are you sure you want to delete this record')) {
+            Inertia.delete(route('url-delete',id));
+         }
+      },
+     counter(index=0)
     {
       return index + 1 ;
     }
+
+  }
+
+}
+
 </script>
 
 <template>
@@ -70,8 +87,15 @@ import { onMounted } from '@vue/runtime-core';
                   {{url.status ? 'Active' : 'Disabled'}}
               </span>
             </td>
-            <td class="text-sm text-blue-500 hover:underline">
-                View
+            <td class="text-sm">
+               <Link :href="route('url-details',url.id)" as="button" class="text-blue-500 hover:underline">
+                 View
+               </Link>
+
+               <button type="button" @click="deleteUrl(url.id)" class="ml-2 text-red-500 hover:underline">
+                 Delete
+               </button>
+
             </td>
           </tr>
         </tbody>

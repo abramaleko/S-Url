@@ -35,8 +35,14 @@ Route::prefix('/short-url')->group(function()
     Route::get('/new',[UrlController::class,'index'])->name('url-create');
     Route::post('/save-url',[UrlController::class,'saveUrl'])->name('url-save');
     Route::post('/url/check-availability', [UrlController::class,'checkAvailabilty'])->name('url-check-availabilty');
-
     Route::get('/all',[UrlController::class,'allUrls'])->name('url-all');
+    Route::get('/{url}/details',[UrlController::class,'urlDetails'])->name('url-details');
+    Route::post('/update-status',[UrlController::class,'updateStatus'])->name('update-status');
+
+    Route::get('/{url}/edit',[UrlController::class,'editUrl'])->name('edit-url');
+
+    Route::delete('{url}/delete',[UrlController::class,'deleteUrl'])->name('url-delete');
+
 });
 
 

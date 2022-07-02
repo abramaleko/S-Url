@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('redirect_to');
             $table->string('short_url');
-            $table->boolean('status')->dafault(true);
+            $table->boolean('status');
             $table->timestamp('expires_on')->nullable();
             $table->foreignId('user_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

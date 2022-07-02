@@ -40,6 +40,8 @@ Route::prefix('/short-url')->group(function()
     Route::post('/update-status',[UrlController::class,'updateStatus'])->name('update-status');
 
     Route::get('/{url}/edit',[UrlController::class,'editUrl'])->name('edit-url');
+    Route::post('/{url}/edit',[UrlController::class,'updateUrl'])->name('update-url');
+
 
     Route::delete('{url}/delete',[UrlController::class,'deleteUrl'])->name('url-delete');
 

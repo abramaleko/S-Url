@@ -73,6 +73,21 @@ class UrlController extends Controller
         ]);
     }
 
+    public function updateUrl(Urls $url,Request $request)
+    {
+        $this->validate($request,[
+            'short_url' => 'required|string',
+            'redirect_to' => 'required|url',
+          ]);
+
+          $url->short_url= $request->short_url;
+          $url->redirect_to=$request-> redirect_to;
+          $url->save();
+
+          return Redirect::route('url-details',$url->id)->with('message','Successfully Updated Url');
+
+    }
+
     public function updateStatus(Request $request)
     {
          $url=Urls::find($request->id);

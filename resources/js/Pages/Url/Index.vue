@@ -17,6 +17,10 @@
                 </div>
             </div>
             <div class="flex-auto px-4 py-10 pt-0 lg:px-10">
+                <p class="font-bold text-red-500" v-if="trialMax">
+                    You have already created 3 url's which is a maximum for the free subscription please upgrade your package
+                    <a href="#" class="underline">here</a>
+                </p>
                 <form @submit.prevent="submit">
                     <h6 class="mt-3 mb-6 text-sm font-bold uppercase text-blueGray-400">
                         Url Info
@@ -75,9 +79,9 @@
                     </div>
 
                     <div class="w-full px-4 my-6 lg:w-12/12">
-                        <button type="submit" :disabled="form.processing"
+                        <button type="submit" :disabled="form.processing || trialMax"
                             class="px-4 py-3 mr-1 text-xs font-bold text-white uppercase transition-all duration-150 ease-linear bg-blue-500 rounded shadow outline-none active:bg-emerald-600 hover:shadow-md focus:outline-none hover:bg-blue-400"
-                            :class="{ 'opacity-25' : form.processing}">
+                            :class="{ 'opacity-25' : form.processing, 'cursor-not-allowed' : trialMax} ">
                             CREARTE URL
                         </button>
                     </div>
@@ -114,6 +118,7 @@ export default {
     props: {
         errors: Object,
         app_url : String,
+        trialMax : Boolean,
     },
     data() {
         return {

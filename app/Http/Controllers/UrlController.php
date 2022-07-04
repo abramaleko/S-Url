@@ -17,8 +17,12 @@ class UrlController extends Controller
 
     public function index()
     {
+      //check if the user has reach the maximum trial of 3 url
+      $checkMaximum=Urls::where('user_id',Auth::user()->id)->count();
+
         return Inertia::render('Url/Index',[
-            'app_url' => env('APP_URL')
+            'app_url' => env('APP_URL'),
+            'trialMax' => $checkMaximum >= 3 ? true : false
         ]);
     }
 
@@ -44,6 +48,7 @@ class UrlController extends Controller
       $url->short_url=$request->short_url;
       $url->redirect_to=$request->redirect_to;
       $url->expires_on=$expiredate;
+      $url->status=true;
       $url->user_id=Auth::user()->id;
       $url->save();
 

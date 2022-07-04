@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UrlController;
+use App\Http\Controllers\UrlRedirectController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -47,6 +48,8 @@ Route::prefix('/short-url')->group(function()
 
 });
 
+ //redirect route
+ Route::get('/url/{urls:short_url}',[UrlRedirectController::class,'namedRedirectUrl'])->where('shortUrl','.*');
 
 //all short url routes
 Route::prefix('/url')->group(function(){

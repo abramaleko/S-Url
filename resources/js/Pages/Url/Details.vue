@@ -9,6 +9,7 @@ export default {
     },
     props: {
         url: Object,
+        app_url : String,
     },
     methods: {
         updateStatus() {
@@ -43,15 +44,12 @@ export default {
                 <div class="my-4 text-gray-500 border-b-2"></div>
 
                 <p class="my-3 text-base text-gray-600 md:text-lg"><b>Short Url :</b> {{ url.short_url }}
-                    <a :href="url.short_url" target="_blank">
+                    <a :href="app_url +'url/' + url.short_url" target="_blank">
                         <i class="text-sm text-blue-500 fas fa-external-link"></i>
                     </a>
                 </p>
 
                 <p class="mb-3 text-base text-gray-600 md:text-lg"><b>Redirect To :</b> {{ url.redirect_to }}
-                    <!-- <Link :href="url.redirect_to" target="_blank" >
-                           <i class="text-sm text-blue-500 fas fa-external-link"></i>
-                       </Link> -->
                     <a :href="url.redirect_to" target="_blank" class="pl-1">
                         <i class="text-sm text-blue-500 fas fa-external-link"></i>
                     </a>

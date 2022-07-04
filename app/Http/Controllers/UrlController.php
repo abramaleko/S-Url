@@ -67,6 +67,7 @@ class UrlController extends Controller
     {
         return Inertia::render('Url/Details',[
             'url' => $url,
+             'app_url' => env('APP_URL')
         ]);
     }
 

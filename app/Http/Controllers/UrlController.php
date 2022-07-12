@@ -34,6 +34,27 @@ class UrlController extends Controller
      return $check;
     }
 
+    public function generateRandomUrl($length)
+    {
+      //set max length to 15
+      $length >= 15 ? $length=15 : $length ;
+
+       $url=$this->generateRandomString($length);
+
+       return $url;
+    }
+
+    function generateRandomString($length) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+
     public function saveUrl(Request $request)
     {
         $this->validate($request,[
@@ -49,6 +70,7 @@ class UrlController extends Controller
       $url->redirect_to=$request->redirect_to;
       $url->expires_on=$expiredate;
       $url->status=true;
+      $url->url_type=$request->url_type;
       $url->user_id=Auth::user()->id;
       $url->save();
 

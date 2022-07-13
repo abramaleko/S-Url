@@ -27,9 +27,9 @@
                                     <span
                                         class="flex items-center px-3 text-sm leading-normal whitespace-no-wrap border border-r-0 rounded rounded-r-none bg-grey-lighter border-grey-light text-grey-dark">{{app_url}}url/</span>
                                 </div>
-                                <input type="text" v-model="form.short_url" @blur="checkUrlAvailabilty" id="short-url"
+                                <input type="text" v-model="form.short_url" @blur="checkUrlAvailabilty" id="short-url" :disabled="url.url_type== 1"
                                     class="relative flex-auto flex-grow flex-shrink w-px h-10 px-3 text-sm leading-normal border-0 rounded rounded-r shadow placeholder-blueGray-300 text-blueGray-600 focus:outline-none focus:ring"
-                                    :class="{ ['border-2  border-red-500 focus:border-red-500']: alreadyTaken, ['border-2 border-red-500'] : errors.short_url }">
+                                    :class="{ ['border-2  border-red-500 focus:border-red-500']: alreadyTaken, ['border-2 border-red-500'] : errors.short_url, 'cursor-not-allowed' : url.url_type==1 }">
                             </div>
                             <span v-if="alreadyTaken" class="block text-sm font-bold text-red-500">This url has already
                                 been choosen</span>

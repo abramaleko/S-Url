@@ -54,7 +54,7 @@ export default {
                         <i class="text-sm text-blue-500 fas fa-external-link"></i>
                     </a>
                 </p>
-
+               <p class="mb-3 text-base text-gray-600 md:text-lg"><b>Url Type :</b> {{ url.url_type === 1 ? 'Random Url' : 'Personalized Url' }}</p>
                 <p class="mb-3 text-base text-gray-600 md:text-lg"><b>Exipires On :</b> {{ url.expires_on }}</p>
                 <div class="flex mb-4 flex-nowrap">
                     <div>

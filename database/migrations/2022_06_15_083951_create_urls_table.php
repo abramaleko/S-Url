@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('urls', function (Blueprint $table) {
-            $table->id();
-            $table->string('redirect_to');
-            $table->string('short_url');
-            $table->boolean('status');
-            $table->tinyInteger('url_type')->comments('1-For Random Url , 2- For personalized Url');
-            $table->timestamp('expires_on')->nullable();
-            $table->foreignId('user_id')->constrained();
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        // Schema::create('urls', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('redirect_to');
+        //     $table->string('short_url');
+        //     $table->boolean('status');
+        //     $table->tinyInteger('url_type')->comments('1-For Random Url , 2- For personalized Url');
+        //     $table->timestamp('expires_on')->nullable();
+        //     $table->foreignId('user_id')->constrained();
+        //     $table->softDeletes();
+        //     $table->timestamps();
+        // });
     }
 
     /**

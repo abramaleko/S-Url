@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Urls;
+use AshAllenDesign\ShortURL\Models\ShortURL;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use \AshAllenDesign\ShortURL\Classes\Builder as urlBuilder;
 class UrlController extends Controller
 {
     public function __construct()
@@ -29,7 +31,7 @@ class UrlController extends Controller
     public function checkAvailabilty(Request $request)
     {
         //check if the url  already exists in the database
-      $check=Urls::where('short_url',$request->url)->exists();
+        $check=ShortURL::findByKey($request->url);
 
      return $check;
     }
@@ -40,6 +42,12 @@ class UrlController extends Controller
       $length >= 15 ? $length=15 : $length ;
 
        $url=$this->generateRandomString($length);
+
+       //returns true if the url key has already been taken
+       while (ShortUrl::findByKey($url)) {
+           //recreates another url key
+          $url=$this->generateRandomString($length);
+       }
 
        return $url;
     }
@@ -65,14 +73,16 @@ class UrlController extends Controller
 
       $expiredate=Carbon::now()->addMonth($request->months);
 
-      $url=new Urls();
-      $url->short_url=$request->short_url;
-      $url->redirect_to=$request->redirect_to;
-      $url->expires_on=$expiredate;
-      $url->status=true;
-      $url->url_type=$request->url_type;
-      $url->user_id=Auth::user()->id;
-      $url->save();
+      //if url type is random url
+      if ($request->url_type=1) {
+         $urlObject=new urlBuilder();
+         $urlObject->destinationUrl($request->redirect_to)
+                          ->urlKey($request->short_url)
+                          ->trackVisits(false)
+                          ->deactivateAt($expiredate)
+                          ->secure()
+                          ->make();
+      }
 
       return Redirect::route('url-all');
 

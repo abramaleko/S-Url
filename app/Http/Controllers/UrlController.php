@@ -73,16 +73,13 @@ class UrlController extends Controller
 
       $expiredate=Carbon::now()->addMonth($request->months);
 
-      //if url type is random url
-      if ($request->url_type=1) {
-         $urlObject=new urlBuilder();
-         $urlObject->destinationUrl($request->redirect_to)
-                          ->urlKey($request->short_url)
-                          ->trackVisits(false)
-                          ->deactivateAt($expiredate)
-                          ->secure()
-                          ->make();
-      }
+    $urlObject=new urlBuilder();
+    $urlObject->destinationUrl($request->redirect_to)
+                ->urlKey($request->short_url)
+                ->trackVisits( $request->url_type==1 ? false : true) //if url is random disable tracking if it's personalized enable tracking
+                ->deactivateAt($expiredate)
+                ->secure()
+                ->make();
 
       return Redirect::route('url-all');
 

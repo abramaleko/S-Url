@@ -129,6 +129,8 @@
                                     </button>
                                 </div>
                             </div>
+                             <p class="py-2 text-xs font-bold text-red-500" v-show="premiumAlertForExipiry">Please
+                                upgrade to premium version to set expiry to above 3 months</p>
                         </div>
 
                         <div class="flex flex-wrap mt-12">

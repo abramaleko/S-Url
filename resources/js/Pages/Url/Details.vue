@@ -43,20 +43,20 @@ export default {
                 </div>
                 <div class="my-4 text-gray-500 border-b-2"></div>
 
-                <p class="my-3 text-base text-gray-600 md:text-lg"><b>Short Url :</b> {{ url.short_url }}
-                    <a :href="app_url +'url/' + url.short_url" target="_blank">
+                <p class="my-3 text-base text-gray-600 md:text-lg"><b>Short Url :</b> {{ url.url_key }}
+                    <a :href="url.default_short_url" target="_blank">
                         <i class="text-sm text-blue-500 fas fa-external-link"></i>
                     </a>
                 </p>
 
-                <p class="mb-3 text-base text-gray-600 md:text-lg"><b>Redirect To :</b> {{ url.redirect_to }}
-                    <a :href="url.redirect_to" target="_blank" class="pl-1">
+                <p class="mb-3 text-base text-gray-600 md:text-lg"><b>Redirect To :</b> {{ url.destination_url }}
+                    <a :href="url.destination_url" target="_blank" class="pl-1">
                         <i class="text-sm text-blue-500 fas fa-external-link"></i>
                     </a>
                 </p>
                <p class="mb-3 text-base text-gray-600 md:text-lg"><b>Url Type :</b> {{ url.url_type === 1 ? 'Random Url' : 'Personalized Url' }}</p>
-                <p class="mb-3 text-base text-gray-600 md:text-lg"><b>Exipires On :</b> {{ url.expires_on }}</p>
-                <div class="flex mb-4 flex-nowrap">
+                <p class="mb-3 text-base text-gray-600 md:text-lg"><b>Exipires On :</b> {{ url.deactivated_at }}</p>
+                <!-- <div class="flex mb-4 flex-nowrap">
                     <div>
                         <p class="text-base font-bold text-gray-600 md:text-lg">Status :</p>
                     </div>
@@ -73,7 +73,7 @@ export default {
                         </label>
 
                     </div>
-                </div>
+                </div> -->
 
                 <div class="mt-8 mb-4 text-gray-400 border-b-2"></div>
 

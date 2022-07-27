@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Urls;
-use AshAllenDesign\ShortURL\Models\ShortURL;
+use App\Models\ShortURL;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use \AshAllenDesign\ShortURL\Classes\Builder as urlBuilder;
+use App\Classes\Builder as urlBuilder;
+
 class UrlController extends Controller
 {
     public function __construct()
@@ -88,11 +89,11 @@ class UrlController extends Controller
     public function allUrls()
     {
         return Inertia::render('Url/All',[
-            'urls' => Urls::orderBy('id','desc')->get()
+            'urls' => ShortURL::where('user_id',Auth::user()->id)->orderBy('id','desc')->get()
         ]);
     }
 
-    public function urlDetails(Urls $url)
+    public function urlDetails(ShortURL $url)
     {
         return Inertia::render('Url/Details',[
             'url' => $url,

@@ -1,6 +1,6 @@
 <?php
 
-namespace AshAllenDesign\ShortURL\Classes;
+namespace App\Classes;
 
 use AshAllenDesign\ShortURL\Exceptions\ShortURLException;
 use AshAllenDesign\ShortURL\Exceptions\ValidationException;
@@ -8,7 +8,8 @@ use AshAllenDesign\ShortURL\Models\ShortURL;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
+use AshAllenDesign\ShortURL\Classes\Validation;
+use AshAllenDesign\ShortURL\Classes\KeyGenerator;
 
 class Builder
 {

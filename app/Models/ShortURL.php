@@ -66,6 +66,7 @@ class ShortURL extends Model
         'track_device_type',
         'activated_at',
         'deactivated_at',
+        'user_id'
     ];
 
     /**
@@ -96,6 +97,8 @@ class ShortURL extends Model
         'track_browser_version'          => 'boolean',
         'track_referer_url'              => 'boolean',
         'track_device_type'              => 'boolean',
+        'deactivated_at' => 'datetime:Y-m-d',
+
     ];
 
     /**
@@ -191,3 +194,4 @@ class ShortURL extends Model
        return $this->belongsTo(User::class,'user_id');
     }
 }
+

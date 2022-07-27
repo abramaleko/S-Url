@@ -59,11 +59,8 @@ export default {
                     Short-Url
              </th>
           <th class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid bg-blueGray-50 text-blueGray-500 border-blueGray-100 whitespace-nowrap">
-                         Total Visitors
+                         Expires On
              </th>
-          <th class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid bg-blueGray-50 text-blueGray-500 border-blueGray-100 whitespace-nowrap">
-                          Status
-          </th>
           <th class="px-6 py-3 text-xs font-semibold text-left uppercase align-middle border border-l-0 border-r-0 border-solid bg-blueGray-50 text-blueGray-500 border-blueGray-100 whitespace-nowrap">
 
           </th>
@@ -76,23 +73,17 @@ export default {
                {{counter(index)}}
             </th>
             <td class="p-4 px-6 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap ">
-             {{url.short_url}}
+             {{url.url_key}}
             </td>
             <td class="p-4 px-6 text-xs border-t-0 border-l-0 border-r-0 align-center whitespace-nowrap">
-              3400
+              {{url.deactivated_at}}
             </td>
-            <td class="p-4 px-6 text-xs align-middle border-t-0 border-l-0 border-r-0 whitespace-nowrap">
-              <span class="p-2 text-xs text-white rounded-full "
-                :class="{'hover:bg-green-400 bg-green-500' : url.status , 'hover:bg-red-400 bg-red-500' : ! url.status}">
-                  {{url.status ? 'Active' : 'Disabled'}}
-              </span>
-            </td>
-            <td class="text-sm">
-               <Link :href="route('url-details',url.id)" as="button" class="text-blue-500 hover:underline">
+            <td class="flex p-4 text-sm">
+               <Link :href="route('url-details',url.id)" as="button" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-400 hover:underline">
                  View
                </Link>
 
-               <button type="button" @click="deleteUrl(url.id)" class="ml-2 text-red-500 hover:underline">
+               <button type="button" @click="deleteUrl(url.id)" class="px-4 py-2 ml-4 text-white bg-red-500 rounded hover:underline hover:bg-red-400">
                  Delete
                </button>
 

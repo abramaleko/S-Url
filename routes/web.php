@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\UrlController;
-use App\Http\Controllers\UrlRedirectController;
+use App\Http\Controllers\ShortUrlController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use AshAllenDesign\ShortURL\Facades\ShortURL;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,11 +51,8 @@ Route::prefix('/short-url')->group(function()
 });
 
  //redirect route
- Route::get('/url/{urls:short_url}',[UrlRedirectController::class,'namedRedirectUrl'])->where('shortUrl','.*');
-
-//all short url routes
-Route::prefix('/url')->group(function(){
-
+Route::middleware(ShortURL::middleware())->group(function () {
+    Route::get('/'.ShortURL::prefix().'/{shortURLKey}',[ShortURLController::class,'__invoke'])->name('short-url.invoke');
 
 });
 

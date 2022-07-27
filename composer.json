@@ -27,7 +27,8 @@
         "exclude-from-classmap": [
             "vendor\\ashallendesign\\short-url\\src\\Controllers\\ShortURLController.php",
             "vendor\\ashallendesign\\short-url\\routes\\web.php",
-            "vendor\\ashallendesign\\short-url\\src\\Models\\ShortURL.php"
+            "vendor\\ashallendesign\\short-url\\src\\Models\\ShortURL.php",
+            "vendor\\ashallendesign\\short-url\\src\\Classes\\Builder.php"
         ],
         "psr-4": {
             "App\\": "app/",

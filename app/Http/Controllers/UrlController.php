@@ -135,8 +135,9 @@ class UrlController extends Controller
          ]);
     }
 
-    public function deleteUrl(Urls $url)
+    public function deleteUrl(ShortURL $url)
     {
+       $url->visits ?? $url->visits->delete();
        $url->delete();
        return Redirect::route('url-all');
     }

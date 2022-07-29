@@ -74,11 +74,14 @@ class UrlController extends Controller
 
       $expiredate=Carbon::now()->addMonth($request->months);
 
+    //   dd($expiredate);
+
     $urlObject=new urlBuilder();
     $urlObject->destinationUrl($request->redirect_to)
                 ->urlKey($request->short_url)
-                ->trackVisits( $request->url_type==1 ? false : true) //if url is random disable tracking if it's personalized enable tracking
+                ->trackVisits( $request->url_type==1 ? false : true) //if url is random disable tracking if it's personalized or single use enable tracking
                 ->deactivateAt($expiredate)
+                ->setUrlType($request->url_type)
                 ->secure()
                 ->make();
 
@@ -101,7 +104,7 @@ class UrlController extends Controller
         ]);
     }
 
-    public function editUrl(Urls $url)
+    public function editUrl(ShortURL $url)
     {
         return Inertia::render('Url/Edit',[
             'url' => $url,

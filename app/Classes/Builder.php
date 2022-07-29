@@ -4,7 +4,7 @@ namespace App\Classes;
 
 use AshAllenDesign\ShortURL\Exceptions\ShortURLException;
 use AshAllenDesign\ShortURL\Exceptions\ValidationException;
-use AshAllenDesign\ShortURL\Models\ShortURL;
+use App\Models\ShortURL;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -165,6 +165,14 @@ class Builder
 
      //The url belongs to which user;
      private $user_id;
+
+     /** Type of url
+       * 1 - For random url
+       * 2-  For personalized url
+       * 3- For single use
+     **/
+    private $url_type;
+
 
     public function __construct(Validation $validation = null, KeyGenerator $keyGenerator = null)
     {
@@ -515,7 +523,8 @@ class Builder
             'track_device_type'              => $this->trackDeviceType,
             'activated_at'                   => $this->activateAt,
             'deactivated_at'                 => $this->deactivateAt,
-            'user_id'                        =>  $this->user_id
+            'user_id'                        =>  $this->user_id,
+            'url_type'                       => $this->url_type
         ]);
     }
 
@@ -646,5 +655,11 @@ class Builder
         }
 
         return $baseUrl.$this->urlKey;
+    }
+
+    public function setUrlType($url_type)
+    {
+        $this->url_type=$url_type;
+        return $this;
     }
 }

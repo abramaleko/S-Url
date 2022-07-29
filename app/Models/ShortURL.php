@@ -67,7 +67,8 @@ class ShortURL extends Model
         'track_device_type',
         'activated_at',
         'deactivated_at',
-        'user_id'
+        'user_id',
+        'url_type'
     ];
 
     /**

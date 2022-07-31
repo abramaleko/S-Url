@@ -25,7 +25,7 @@ This type of url which can be used only once and also can be custom or random ur
 
 ## Tasks to be done
 - Delete Url ✅
-- Edit Url can only be done for random url's which will be for random url's to regenerate the random key's only.
+- Edit Url can only be done for all types of short url but only the key names can be edited. ✅
 - Implement short-url for single use
 - Implement statistical data for both single use and Personalized
 - User Profile

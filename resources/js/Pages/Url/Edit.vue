@@ -17,25 +17,53 @@
                     <h6 class="mt-3 mb-6 text-sm font-bold uppercase text-blueGray-400">
                         Url Info
                     </h6>
-                    <div class="w-full px-4 mb-6 lg:w-12/12">
+                    <div class="w-full px-4 mb-6 lg:w-12/12" v-if="url.url_type==1">
                         <div class="relative w-full">
-                            <label class="block mb-2 text-xs font-bold uppercase text-blueGray-600" htmlFor="short-url">
-                                Short Url
-                            </label>
-                            <div class="relative flex flex-wrap items-stretch w-full mb-4">
-                                <div class="flex -mr-px bg-blueGray-200">
-                                    <span
-                                        class="flex items-center px-3 text-sm leading-normal whitespace-no-wrap border border-r-0 rounded rounded-r-none bg-grey-lighter border-grey-light text-grey-dark">{{app_url}}url/</span>
+                                <label class="block mb-2 text-xs font-bold uppercase text-blueGray-600"
+                                    htmlFor="short-url">
+                                    Short Url
+                                </label>
+                                <div class="relative flex flex-wrap items-stretch w-full mb-4">
+                                    <div class="flex -mr-px bg-blueGray-200">
+                                        <span
+                                            class="flex items-center px-3 text-sm leading-normal whitespace-no-wrap border border-r-0 rounded rounded-r-none bg-grey-lighter border-grey-light text-grey-dark">{{ app_url }}visit/</span>
+                                    </div>
+                                    <input type="text" v-model="form.short_url" @blur="checkUrlAvailabilty"
+                                        id="short-url" disabled
+                                        class="relative flex-auto flex-grow flex-shrink w-px h-10 px-3 text-sm leading-normal border-0 rounded rounded-r shadow placeholder-blueGray-300 text-blueGray-600 focus:outline-none focus:ring" />
+                                    <button @click="generateUrl" type="button"
+                                        class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        GENERATE URL
+                                    </button>
                                 </div>
-                                <input type="text" v-model="form.short_url" @blur="checkUrlAvailabilty" id="short-url" :disabled="url.url_type== 1"
-                                    class="relative flex-auto flex-grow flex-shrink w-px h-10 px-3 text-sm leading-normal border-0 rounded rounded-r shadow placeholder-blueGray-300 text-blueGray-600 focus:outline-none focus:ring"
-                                    :class="{ ['border-2  border-red-500 focus:border-red-500']: alreadyTaken, ['border-2 border-red-500'] : errors.short_url, 'cursor-not-allowed' : url.url_type==1 }">
                             </div>
-                            <span v-if="alreadyTaken" class="block text-sm font-bold text-red-500">This url has already
-                                been choosen</span>
-                           <p class="text-sm font-bold text-red-500" v-if="errors.short_url">{{ errors.short_url }}</p>
-                        </div>
                     </div>
+
+                    <div class="w-full px-4 mb-6 lg:w-12/12" v-if="url.url_type==2">
+                  <div class="relative w-full">
+                        <label class="block mb-2 text-xs font-bold uppercase text-blueGray-600"
+                            htmlFor="short-url">
+                            Short Url
+                        </label>
+                        <div class="relative flex flex-wrap items-stretch w-full mb-4">
+                            <div class="flex -mr-px bg-blueGray-200">
+                                <span
+                                    class="flex items-center px-3 text-sm leading-normal whitespace-no-wrap border border-r-0 rounded rounded-r-none bg-grey-lighter border-grey-light text-grey-dark">{{ app_url }}visit/</span>
+                            </div>
+                            <input type="text" v-model="form.short_url" @blur="checkUrlAvailabilty"
+                                id="short-url"
+                                class="relative flex-auto flex-grow flex-shrink w-px h-10 px-3 text-sm leading-normal border-0 rounded rounded-r shadow placeholder-blueGray-300 text-blueGray-600 focus:outline-none focus:ring"
+                                :class="{ ['border-2  border-red-500 focus:border-red-500']: alreadyTaken, ['border-2 border-red-500']: errors.short_url }">
+                        </div>
+                        <span v-if="alreadyTaken" class="block text-sm font-bold text-red-500">This url has
+                            already
+                            been choosen</span>
+                        <p class="text-sm font-bold text-red-500" v-if="errors.short_url">{{ errors.short_url }}
+                        </p>
+                 </div>
+                </div>
+
+
 
                     <div class="w-full px-4 mb-6 lg:w-12/12">
                         <div class="relative w-full">
@@ -43,13 +71,11 @@
                                 htmlFor="grid-password">
                                 Redirected url
                             </label>
-                            <input type="text" v-model="form.redirect_to"
-                                class="w-full px-3 py-3 text-sm transition-all duration-150 ease-linear bg-white border-0 rounded shadow placeholder-blueGray-300 text-blueGray-600 focus:outline-none focus:ring"
-                                :class="{['border-2 border-red-500'] : errors.redirect_to}" />
+                            <input type="text" :value="url.destination_url" disabled="true"
+                                class="w-full px-3 py-3 text-sm transition-all duration-150 ease-linear bg-white border-0 rounded shadow cursor-not-allowed placeholder-blueGray-300 text-blueGray-600 focus:outline-none focus:ring" />
                         </div>
-                         <p class="text-sm font-bold text-red-500" v-if="errors.redirect_to">{{ errors.redirect_to }}</p>
-                         <p class="pt-1 text-xs font-semibold text-gray-500" v-if="errors.redirect_to">
-                            Make sure your redirect url starts with http::// or https://
+                         <p class="pt-1 text-xs font-semibold text-gray-500">
+                            You can not this redirect url because it already have traffic records of the url
                          </p>
                     </div>
 
@@ -90,8 +116,7 @@ export default {
     },
     setup(props) {
         const form = useForm({
-            short_url: props.url.short_url,
-            redirect_to: props.url.redirect_to,
+            short_url: props.url.url_key,
         })
         return { form }
     },
@@ -103,6 +128,9 @@ export default {
     data() {
         return {
             alreadyTaken: false,
+            step: 1,
+            url_length: 5,
+            random_clicks: 0,
         }
     },
     methods: {
@@ -125,12 +153,26 @@ export default {
         },
         submit() {
 
-            if (!this.form.short_url || !this.form.redirect_to) {
+            if (!this.form.short_url) {
                 alert("Please fill all inputs before submitting");
                 return false;
             }
 
             this.form.post(route('update-url',this.url.id));
+        },
+         generateUrl() {
+            //register the random clicks
+            this.random_clicks++;
+
+            if (this.random_clicks > 3) {
+                //after 3 clicks increment the url length
+                this.url_length++;
+            }
+
+            axios.get(route('random-url-generate', this.url_length))
+                .then(response => {
+                    this.form.short_url = response.data
+                })
         }
     }
 

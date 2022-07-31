@@ -112,15 +112,13 @@ class UrlController extends Controller
         ]);
     }
 
-    public function updateUrl(Urls $url,Request $request)
+    public function updateUrl(ShortURL $url,Request $request)
     {
         $this->validate($request,[
             'short_url' => 'required|string',
-            'redirect_to' => 'required|url',
           ]);
 
-          $url->short_url= $request->short_url;
-          $url->redirect_to=$request-> redirect_to;
+          $url->url_key= $request->short_url;
           $url->save();
 
           return Redirect::route('url-details',$url->id)->with('message','Successfully Updated Url');
@@ -144,27 +142,4 @@ class UrlController extends Controller
        $url->delete();
        return Redirect::route('url-all');
     }
-
-
-
-    // public function redirectUrl(Urls $url)
-    // {
-    //     //check if the url has expired
-    //     if ($url->expired_on->isPast()) {
-
-    //         //dispatch event for exprired url which will send an email notification
-    //         // ExpiredUrl::dispatch($shortUrl->user_id);
-
-    //         return 'Sorry, This url has expired';
-    //     }
-
-    //     //check if the url is active
-    //     if (! $url->status) {
-    //         return 'Sorry, This url has been disabled';
-    //     }
-
-    //     // return Redirect::to($shortUrl->redirect_url);
-
-    // }
-
 }

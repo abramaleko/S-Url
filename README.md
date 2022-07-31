@@ -24,11 +24,12 @@ This url's have custom names which will redirect you to your desire url and also
 This type of url which can be used only once and also can be custom or random url also after been used they are made unavailable.Also this type of url can have statistical data.
 
 ## Tasks to be done
-- Delete Url
-- Edit Url
+- Delete Url ✅
+- Edit Url can only be done for random url's which will be for random url's to regenerate the random key's only.
 - Implement short-url for single use
 - Implement statistical data for both single use and Personalized
 - User Profile
 - Implement payment methods
+- Add trash bin for viewing deleted urls
 
 

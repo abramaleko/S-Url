@@ -34,8 +34,8 @@ export default {
                     <success-alert :message="$page.props.flash.message" />
                 </div>
                 <div class="flex flex-wrap">
-                    <Link as="button" :href="route('edit-url', url.id)" class="mr-2 text-xs hover:text-blue-500">
-                    <i class="fa-solid fa-pen"></i>
+                    <Link as="button" :href="route('edit-url', url.id)" class="px-2 mr-2 text-xs bg-green-500 rounded-full hover:bg-green-400" style="height:23px;">
+                    <i class="text-xs text-white fa-solid fa-pen" style="font-size:6px;"></i>
                     </Link>
                     <h2 class="text-2xl font-semibold text-gray-600 ">
                         Url Details

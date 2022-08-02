@@ -78,18 +78,35 @@ export default {
                 <div class="mt-8 mb-4 text-gray-400 border-b-2"></div>
 
                 <!-- url stats-->
-                <div class="flex flex-wrap p-4 mt-4 rounded-md md:shadow-md md:p-12">
-                    <div class="w-full px-4 lg:w-5/12 xl:w-3/12">
-                        <card-stats></card-stats>
+                <h2 class="block mb-4 text-2xl font-semibold text-gray-600">
+                        Url Stats
+                        <Link :href="url.destination_url" target="_blank" class="pl-1"
+                        data-tooltip-placement="right" data-tooltip-target="url-stats"
+                        data-tooltip-style="light">
+                        <i class="text-sm text-blue-500 fas fa-external-link"></i>
+                       </Link>
+                </h2>
+                   <div id="url-stats" role="tooltip"
+                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                        Click to view more stats about this url
+                        <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
-                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
-                        <card-stats></card-stats>
-                    </div>
-                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
-                        <card-stats></card-stats>
-                    </div>
-                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
-                        <card-stats></card-stats>
+                <div class="rounded-md md:shadow-md ">
+                    <div class="flex flex-wrap p-4 md:p-8">
+                        <div class="w-full px-4 lg:w-3/6 ">
+                        <card-stats
+                         statSubtitle="Total No Of Url Clicks"
+                         :statTitle="url.total_visits"
+                         statIconName="fa-solid fa-computer-mouse"
+                         statIconColor="bg-teal-500"/>
+                       </div>
+                        <div class="w-full px-4 lg:w-3/6">
+                            <card-stats
+                             statSubtitle="Most Of Devices Used"
+                             :statTitle="url.most_used_device ? url.most_used_device : 'NIL'"
+                             statIconName="fa-solid fa-house-laptop"
+                             statIconColor="bg-red-500"/>
+                        </div>
                     </div>
                 </div>
 

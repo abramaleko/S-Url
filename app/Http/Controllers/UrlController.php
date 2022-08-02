@@ -74,8 +74,6 @@ class UrlController extends Controller
 
       $expiredate=Carbon::now()->addMonth($request->months);
 
-    //   dd($expiredate);
-
     $urlObject=new urlBuilder();
     $urlObject->destinationUrl($request->redirect_to)
                 ->urlKey($request->short_url)
@@ -98,6 +96,24 @@ class UrlController extends Controller
 
     public function urlDetails(ShortURL $url)
     {
+        //getting total count for url visits
+        $url->total_visits=number_format($url->visits->count());
+
+        //grouping traffic visits based on devices
+        if ($url->total_visits) {
+            $grouped_visits = array();
+
+            foreach ($url->visits as $element) {
+                $grouped_visits[$element['device_type']][] = $element;
+            }
+             foreach ($grouped_visits as $key => $visit) {
+              $devices_url_count[$key] = count($visit);
+             }
+             $value=max($grouped_visits); //sorting which has the highest value of the devicess visits
+             $url->most_used_device=ucfirst(array_search($value,$grouped_visits));
+        }
+
+
         return Inertia::render('Url/Details',[
             'url' => $url,
              'app_url' => env('APP_URL')

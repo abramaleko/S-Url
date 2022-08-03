@@ -10,7 +10,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <!-- Brand -->
-            <Link 
+            <Link
                 class="inline-block p-4 px-0 mr-0 text-sm font-bold text-left uppercase md:block md:pb-2 text-blueGray-600 whitespace-nowrap"
                 :href="route('welcome-page')">
             <application-logo />
@@ -75,20 +75,20 @@
 
                 <ul class="flex flex-col list-none md:flex-col md:min-w-full md:mb-4">
                     <li class="items-center">
-                        <Link :href="route('url-all')" class="block py-3 text-xs font-bold uppercase "
-                            :class="{ 'text-emerald-500 hover:text-emerald-600 ': $page.url === '/short-url/all' }">
-                        <i class="mr-2 text-sm fas fa-fingerprint "
-                            :class="{ 'opacity-75 ': $page.url === '/short-url/all' }"></i>
-                        My Url's
-                        </Link>
-                    </li>
-
-                    <li class="items-center">
                         <Link :href="route('url-create')" class="block py-3 text-xs font-bold uppercase"
                             :class="{ 'text-emerald-500 hover:text-emerald-600 ': $page.url === '/short-url/new' }">
                         <i class="mr-2 text-sm fas fa-clipboard-list "
                             :class="{ 'opacity-75 ': $page.url === '/short-url/new' }"></i>
-                        Add Url
+                        Create Url
+                        </Link>
+                    </li>
+
+                    <li class="items-center">
+                        <Link :href="route('url-all')" class="block py-3 text-xs font-bold uppercase "
+                            :class="{ 'text-emerald-500 hover:text-emerald-600 ': $page.url === '/short-url/all' }">
+                        <i class="mr-2 text-sm fas fa-fingerprint "
+                            :class="{ 'opacity-75 ': $page.url === '/short-url/all' }"></i>
+                        View Url's
                         </Link>
                     </li>
                 </ul>
@@ -97,7 +97,7 @@
                 <hr class="my-4 md:min-w-full" />
                 <!-- Heading -->
                 <h6 class="block pt-1 pb-4 text-xs font-bold no-underline uppercase md:min-w-full text-blueGray-500">
-                    No Layout Pages
+                    URL Stastics
                 </h6>
                 <!-- Navigation -->
 
@@ -106,15 +106,7 @@
                         <a class="block py-3 text-xs font-bold uppercase text-blueGray-700 hover:text-blueGray-500"
                             to="/landing">
                             <i class="mr-2 text-sm fas fa-newspaper text-blueGray-300"></i>
-                            Landing Page
-                        </a>
-                    </li>
-
-                    <li class="items-center">
-                        <a class="block py-3 text-xs font-bold uppercase text-blueGray-700 hover:text-blueGray-500"
-                            to="/profile">
-                            <i class="mr-2 text-sm fas fa-user-circle text-blueGray-300"></i>
-                            Profile Page
+                            View Stats
                         </a>
                     </li>
                 </ul>
@@ -123,75 +115,23 @@
                 <hr class="my-4 md:min-w-full" />
                 <!-- Heading -->
                 <h6 class="block pt-1 pb-4 text-xs font-bold no-underline uppercase md:min-w-full text-blueGray-500">
-                    Documentation
+                    User Profile
                 </h6>
                 <!-- Navigation -->
                 <ul class="flex flex-col list-none md:flex-col md:min-w-full md:mb-4">
                     <li class="inline-flex">
                         <a href="https://www.creative-tim.com/learning-lab/tailwind/vue/colors/notus" target="_blank"
                             class="block mb-4 text-sm font-semibold no-underline text-blueGray-700 hover:text-blueGray-500">
-                            <i class="mr-2 text-base fas fa-paint-brush text-blueGray-300"></i>
-                            Styles
+                             <i class="mr-2 text-sm fas fa-user-circle text-blueGray-300"></i>
+                            View Profile
                         </a>
                     </li>
 
                     <li class="inline-flex">
                         <a href="https://www.creative-tim.com/learning-lab/tailwind/vue/alerts/notus" target="_blank"
                             class="block mb-4 text-sm font-semibold no-underline text-blueGray-700 hover:text-blueGray-500">
-                            <i class="mr-2 text-base fab fa-css3-alt text-blueGray-300"></i>
-                            CSS Components
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a href="https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus"
-                            target="_blank"
-                            class="block mb-4 text-sm font-semibold no-underline text-blueGray-700 hover:text-blueGray-500">
-                            <i class="mr-2 text-base fab fa-angular text-blueGray-300"></i>
-                            Angular
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a href="https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus" target="_blank"
-                            class="block mb-4 text-sm font-semibold no-underline text-blueGray-700 hover:text-blueGray-500">
-                            <i class="mr-2 text-base fab fa-js-square text-blueGray-300"></i>
-                            Javascript
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus"
-                            target="_blank"
-                            class="block mb-4 text-sm font-semibold no-underline text-blueGray-700 hover:text-blueGray-500">
-                            <i class="mr-2 text-base fab fa-react text-blueGray-300"></i>
-                            NextJS
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus"
-                            target="_blank"
-                            class="block mb-4 text-sm font-semibold no-underline text-blueGray-700 hover:text-blueGray-500">
-                            <i class="mr-2 text-base fab fa-react text-blueGray-300"></i>
-                            React
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a href="https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus"
-                            target="_blank"
-                            class="block mb-4 text-sm font-semibold no-underline text-blueGray-700 hover:text-blueGray-500">
-                            <i class="mr-2 text-base fas fa-link text-blueGray-300"></i>
-                            Svelte
-                        </a>
-                    </li>
-
-                    <li class="inline-flex">
-                        <a href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus" target="_blank"
-                            class="block mb-4 text-sm font-semibold no-underline text-blueGray-700 hover:text-blueGray-500">
-                            <i class="mr-2 text-base fab fa-vuejs text-blueGray-300"></i>
-                            VueJS
+                            <i class="mr-2 text-sm fa-solid fa-right-to-bracket text-blueGray-300"></i>
+                            Log Out
                         </a>
                     </li>
                 </ul>

@@ -103,11 +103,12 @@
 
                 <ul class="flex flex-col list-none md:flex-col md:min-w-full md:mb-4">
                     <li class="items-center">
-                        <a class="block py-3 text-xs font-bold uppercase text-blueGray-700 hover:text-blueGray-500"
-                            to="/landing">
-                            <i class="mr-2 text-sm fas fa-newspaper text-blueGray-300"></i>
-                            View Stats
-                        </a>
+                        <Link :href="route('stats-list')" class="block py-3 text-xs font-bold uppercase"
+                            :class="{ 'text-emerald-500 hover:text-emerald-600 ': $page.url === '/short-url/stats/all' }">
+                        <i class="mr-2 text-sm fas fa-newspaper "
+                            :class="{ 'opacity-75 ': $page.url === '/short-url/stats/all' }"></i>
+                        View Stats
+                        </Link>
                     </li>
                 </ul>
 

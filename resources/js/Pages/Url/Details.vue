@@ -80,7 +80,7 @@ export default {
                 <!-- url stats-->
                 <h2 class="block mb-4 text-2xl font-semibold text-gray-600">
                         Url Stats
-                        <Link :href="url.destination_url" target="_blank" class="pl-1"
+                        <Link :href="route('stats-info',url.id)"  target="_blank" class="pl-1"
                         data-tooltip-placement="right" data-tooltip-target="url-stats"
                         data-tooltip-style="light">
                         <i class="text-sm text-blue-500 fas fa-external-link"></i>
@@ -105,7 +105,9 @@ export default {
                              statSubtitle="Most Of Devices Used"
                              :statTitle="url.most_used_device ? url.most_used_device : 'NIL'"
                              statIconName="fa-solid fa-house-laptop"
-                             statIconColor="bg-red-500"/>
+                             statIconColor="bg-red-500"
+                             :statDescripiron="url.url_type==1 ? 'This url type does not support device tracking' : 'Most have used this device to view your link'"
+                             />
                         </div>
                     </div>
                 </div>

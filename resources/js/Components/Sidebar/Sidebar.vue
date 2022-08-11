@@ -56,13 +56,13 @@
                 <!-- Navigation -->
 
                 <ul class="flex flex-col list-none md:flex-col md:min-w-full">
-                    <li class="items-center">
+                    <!-- <li class="items-center">
                         <Link :href="route('dashboard')" class="block py-3 text-xs font-bold uppercase"
                             :class="{ 'text-emerald-500 hover:text-emerald-600 ': $page.url === '/dashboard' }">
                         <i class="mr-2 text-sm fas fa-tv" :class="{ 'opacity-75 ': $page.url === '/dashboard' }"></i>
                         Dashboard
                         </Link>
-                    </li>
+                    </li> -->
                 </ul>
 
                 <!-- Divider -->

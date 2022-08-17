@@ -22,7 +22,7 @@
         </div>
       </div>
       <p class="mt-4 text-sm text-blueGray-400">
-        <span class="mr-2" :class="[statPercentColor]">
+         <span class="mr-2" :class="[statPercentColor]" v-if="statPercent">
           <i
             :class="[
               statArrow === 'up' ? `fas fa-arrow-up` : `fas fa-arrow-down`,
@@ -44,7 +44,7 @@ export default {
       default: "Traffic",
     },
     statTitle: {
-      type: String,
+      type: [String,Number],
       default: "350,897",
     },
     statArrow: {
@@ -56,7 +56,7 @@ export default {
     },
     statPercent: {
       type: String,
-      default: "3.48",
+      default: null,
     },
     // can be any of the text color utilities
     // from tailwindcss

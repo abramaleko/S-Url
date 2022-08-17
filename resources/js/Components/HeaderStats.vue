@@ -5,43 +5,25 @@
       <div>
         <!-- Card stats -->
         <div class="flex flex-wrap">
-          <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+          <div class="w-full px-4 lg:w-2/6">
             <card-stats
-              statSubtitle="TRAFFIC"
-              statTitle="350,897"
-              statArrow="up"
-              statPercent="3.48"
-              statPercentColor="text-emerald-500"
-              statDescripiron="Since last month"
-              statIconName="far fa-chart-bar"
-              statIconColor="bg-red-500"
+              statSubtitle="Url Clicks"
+              :statTitle="total_visits"
+              :statDescripiron="'Average of ' + average_clicks + ' clicks per day' "
+              statIconName="fa-solid fa-computer-mouse"
+              statIconColor="bg-teal-500"
             />
           </div>
-          <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+          <div class="w-full px-4 lg:w-2/6">
             <card-stats
-              statSubtitle="NEW USERS"
-              statTitle="2,356"
-              statArrow="down"
-              statPercent="3.48"
-              statPercentColor="text-red-500"
-              statDescripiron="Since last week"
+              statSubtitle="Devices"
+              :statTitle="most_used"
+              statDescripiron="Most have used this device to view your link"
               statIconName="fas fa-chart-pie"
               statIconColor="bg-orange-500"
             />
           </div>
-          <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
-            <card-stats
-              statSubtitle="SALES"
-              statTitle="924"
-              statArrow="down"
-              statPercent="1.10"
-              statPercentColor="text-orange-500"
-              statDescripiron="Since yesterday"
-              statIconName="fas fa-users"
-              statIconColor="bg-pink-500"
-            />
-          </div>
-          <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+          <div class="w-full px-4 lg:w-2/6">
             <card-stats
               statSubtitle="PERFORMANCE"
               statTitle="49,65%"
@@ -65,6 +47,11 @@ import CardStats from "@/Components/Cards/CardStats.vue";
 export default {
   components: {
     CardStats,
+  },
+  props: {
+    total_visits : [Number, String],
+    average_clicks : [Number, String],
+    most_used : String,
   },
 };
 </script>

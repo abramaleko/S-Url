@@ -9,7 +9,7 @@
             Overview
           </h6>
           <h2 class="text-xl font-semibold text-white">
-            Sales value
+            User clicks for the past 7 days
           </h2>
         </div>
       </div>
@@ -26,34 +26,23 @@
 import Chart from 'chart.js/auto';
 
 export default {
+   props: {
+      stats: Object,
+   },
   mounted: function () {
+    console.log(this.stats);
     this.$nextTick(function () {
       var config = {
         type: "line",
         data: {
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-          ],
+          labels: this.stats['labels'],
           datasets: [
             {
-              label: new Date().getFullYear(),
+              label: 'User Clicks Per this day',
               backgroundColor: "#4c51bf",
               borderColor: "#4c51bf",
-              data: [65, 78, 66, 44, 56, 67, 75],
+              data:this.stats['clicks'].reverse(),
               fill: false,
-            },
-            {
-              label: new Date().getFullYear() - 1,
-              fill: false,
-              backgroundColor: "#fff",
-              borderColor: "#fff",
-              data: [40, 68, 86, 74, 56, 60, 87],
             },
           ],
         },
@@ -62,7 +51,7 @@ export default {
           responsive: true,
           title: {
             display: false,
-            text: "Sales Charts",
+            text: "User clicks for the past 7 days",
             fontColor: "white",
           },
           legend: {

@@ -50,6 +50,9 @@ Route::prefix('/short-url')->group(function()
 
     Route::get('/stats/all',[StatsController::class,'statsList'])->name('stats-list');
 
+    Route::get('/{url}/stats',[StatsController::class,'statsInfo'])->name('stats-info');
+
+
 });
 
  //redirect route

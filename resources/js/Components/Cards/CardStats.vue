@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-      <p class="mt-4 text-sm text-blueGray-400">
+      <p class="mt-4 text-xs text-blueGray-500">
          <span class="mr-2" :class="[statPercentColor]" v-if="statPercent">
           <i
             :class="[

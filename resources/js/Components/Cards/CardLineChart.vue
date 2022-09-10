@@ -17,7 +17,10 @@
     <div class="flex-auto p-4">
       <!-- Chart -->
       <div class="relative h-350-px">
-        <canvas id="line-chart"></canvas>
+        <canvas id="line-chart" v-if="this.stats['clicks'].length > 4"></canvas>
+        <p v-else class="text-sm text-white ">
+            ❌  No sufficient data found to display chart
+        </p>
       </div>
     </div>
   </div>
@@ -30,7 +33,6 @@ export default {
       stats: Object,
    },
   mounted: function () {
-    console.log(this.stats);
     this.$nextTick(function () {
       var config = {
         type: "line",

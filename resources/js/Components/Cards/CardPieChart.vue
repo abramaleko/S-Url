@@ -16,7 +16,10 @@
     </div>
     <div class="flex-auto p-4">
       <div class="relative h-350-px">
-        <canvas id="pie-chart"></canvas>
+        <canvas  id="pie-chart" v-if="this.stats['device_count'].length > 0"></canvas>
+        <p v-else class="text-sm text-white ">
+            ❌  No sufficient data found to display chart
+        </p>
       </div>
     </div>
   </div>

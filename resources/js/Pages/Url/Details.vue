@@ -82,7 +82,7 @@ export default {
                         Url Stats
                         <Link :href="route('stats-info',url.id)"  target="_blank" class="pl-1"
                         data-tooltip-placement="right" data-tooltip-target="url-stats"
-                        data-tooltip-style="light">
+                        data-tooltip-style="light" v-if="url.url_type != 1">
                         <i class="text-sm text-blue-500 fas fa-external-link"></i>
                        </Link>
                 </h2>

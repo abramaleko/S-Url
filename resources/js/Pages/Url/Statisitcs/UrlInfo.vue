@@ -32,7 +32,8 @@ export default {
         <HeaderStats
          :total_visits="stats['total_visits']"
          :average_clicks="stats['average_clicks']"
-         :most_used="stats['most_used_device']"/>
+         :most_used="stats['most_used_device']"
+         :most_used_browser="stats['most_used_browser']"/>
 
     <div class="w-full px-4 mx-auto -m-24 md:px-10 bg-blueGray-100">
     <div>

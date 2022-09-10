@@ -56,7 +56,8 @@ class StatsController extends Controller
              $value=max($grouped_visits); //sorting which has the highest value of the devicess visits
              $stats['most_used_device']=ucfirst(array_search($value,$grouped_visits));
         }
-         $stats['most_used_chart']=$this->getGroupedDeviceVisits($grouped_visits);
+         $stats['most_used_chart']=$this->getGroupedDeviceVisits($grouped_visits); //data for the pie-chart
+         $stats['most_used_browser']=$this->getMostUsedBrowser($url->id,$url->visits);
 
         return Inertia::render('Url/Statisitcs/UrlInfo',[
             'stats' => $stats,
@@ -112,6 +113,29 @@ class StatsController extends Controller
 
         return $dataset;
     }
+
+    public function getMostUsedBrowser($id,$visits){
+        $dataset=[];
+        if ($visits) {
+            $browserVisits=ShortURLVisit::where('short_url_id',$id)
+            ->select('browser', DB::raw('count(*) as total'))
+            ->groupBy('browser')
+            ->get();
+
+            $osVisits=ShortURLVisit::where('short_url_id',$id)
+            ->select('operating_system', DB::raw('count(*) as os_visits'))
+            ->groupBy('operating_system')
+            ->get();
+
+            $dataset['browser']=$browserVisits->first()->browser;
+            $dataset['os']=$osVisits->first()->operating_system;
+
+            return $dataset;
+        }
+        else
+        return 'NULL';
+    }
+
 
 
 }

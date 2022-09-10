@@ -25,12 +25,10 @@
           </div>
           <div class="w-full px-4 lg:w-2/6">
             <card-stats
-              statSubtitle="PERFORMANCE"
-              statTitle="49,65%"
-              statArrow="up"
-              statPercent="12"
+              statSubtitle="Most Used Browser"
+              :statTitle="most_used_browser['browser']"
               statPercentColor="text-emerald-500"
-              statDescripiron="Since last month"
+             :statDescripiron="most_used_browser['browser'] + ' has been used mostly on devices using ' + most_used_browser['os'] "
               statIconName="fas fa-percent"
               statIconColor="bg-emerald-500"
             />
@@ -52,6 +50,7 @@ export default {
     total_visits : [Number, String],
     average_clicks : [Number, String],
     most_used : String,
+    most_used_browser: Object,
   },
 };
 </script>

@@ -15,9 +15,13 @@ Random url provides a random url which can redirect to your desired url . But th
 This url's have custom names which will redirect you to your desire url and also they have statistical data of the users who visited your short url
 
 ### Statistical Data includes
- - Total as no of clicks
- - Location wise where there url's are located
- - Which devices are mostly viewing your url.
+ - Total as no of clicks with comparison with average no of clicks ✅
+ - Location wise where there url's are located 
+ - Which devices are mostly viewing your url. ✅
+ - At what time is the url mostly visited 
+ - Visit rate in comparision with the previous week. ✅
+ - Social traffic coming from
+ - Most useed browser in which os ✅
 
 
 ### Single Use Url

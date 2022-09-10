@@ -12,6 +12,9 @@ export default ({
     methods: {
         counter(index = 0) {
             return index + 1;
+        },
+        showAlert(){
+            alert('Random url\'s do not have access to personalized status ');
         }
     }
 })
@@ -76,8 +79,11 @@ export default ({
             </td>
             <td class="flex p-4 text-sm">
                <Link :href="route('stats-info',url.id)" as="button" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-400 hover:underline"
-               :class="{['cursor-not-allowed']: url.url_type==1}"
-                :disabled="url.url_type==1">
+                v-if="url.url_type != 1">
+                 View
+               </Link>
+               <Link @click="showAlert" as="button" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-400 hover:underline"
+                v-else>
                  View
                </Link>
                <button type="button" @click="deleteUrl(url.id)" class="px-4 py-2 ml-4 text-white bg-red-500 rounded hover:underline hover:bg-red-400">

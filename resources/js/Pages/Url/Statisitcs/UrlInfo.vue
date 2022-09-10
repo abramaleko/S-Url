@@ -7,6 +7,7 @@ import CardLineChart from "@/Components/Cards/CardLineChart.vue";
 import CardBarChart from "@/Components/Cards/CardBarChart.vue";
 import CardPageVisits from "@/Components/Cards/CardPageVisits.vue";
 import CardSocialTraffic from "@/Components/Cards/CardSocialTraffic.vue";
+import CardPieChart from '@/Components/Cards/CardPieChart.vue';
 export default {
   name: "dashboard-page",
   components: {
@@ -17,7 +18,8 @@ export default {
     CardBarChart,
     CardPageVisits,
     CardSocialTraffic,
-  },
+    CardPieChart,
+},
   props : {
     stats: Object,
   },
@@ -39,7 +41,8 @@ export default {
         <card-line-chart :stats="stats['clicksHistory']"/>
       </div>
       <div class="w-full px-4 xl:w-4/12">
-        <card-bar-chart />
+        <!-- <card-bar-chart /> -->
+        <card-pie-chart :stats="stats['most_used_chart']"/>
       </div>
     </div>
     <div class="flex flex-wrap mt-4">

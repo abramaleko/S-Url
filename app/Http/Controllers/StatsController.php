@@ -45,9 +45,8 @@ class StatsController extends Controller
         $stats['clicksHistory']=$this->getClicksHistory($grouped_visits_per_day);
 
          //checking if the url has any visits then grouping traffic visits based on devices
+         $grouped_visits = array();
         if ($url->visits) {
-            $grouped_visits = array();
-
             foreach ($url->visits as $element) {
                 $grouped_visits[$element['device_type']][] = $element;
             }
@@ -57,7 +56,7 @@ class StatsController extends Controller
              $value=max($grouped_visits); //sorting which has the highest value of the devicess visits
              $stats['most_used_device']=ucfirst(array_search($value,$grouped_visits));
         }
-
+         $stats['most_used_chart']=$this->getGroupedDeviceVisits($grouped_visits);
 
         return Inertia::render('Url/Statisitcs/UrlInfo',[
             'stats' => $stats,
@@ -98,6 +97,20 @@ class StatsController extends Controller
 
        return $dataset;
 
+    }
+
+    public function getGroupedDeviceVisits($groupedData)
+    {
+        $dataset=[];
+        $dataset['labels']=[];
+        $dataset['device_count']=[];
+
+        foreach ($groupedData as $key => $data) {
+            array_push($dataset['labels'],$key);
+            array_push($dataset['device_count'],count($data));
+        }
+
+        return $dataset;
     }
 
 

@@ -10,25 +10,20 @@
             </div>
 
             <div id="step-1" v-if="step == 1">
-                <h1 class="mt-8 text-base lg:text-xl text-semibold">Choose what type of Short Url will you be using</h1>
+                <h1 class="mt-8 text-base lg:text-xl text-semibold">Choose what type of Short Url will you be using
+                <button
+                type="button"
+                @click="openModal">
+                <i class="ml-2 text-sm text-green-500 fa-solid fa-circle-exclamation"></i>
+                </button>
+                </h1>
                 <div class="flex items-center my-4">
                     <input id="url-1" type="radio" value="1" v-model="form.url_type"
                         class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
                     <label for="url-1"
                         class="block ml-2 text-sm font-medium text-gray-900 lg:text-lg dark:text-gray-300">
                         Random Url
-                        <button data-tooltip-placement="right" data-tooltip-target="tooltip-light"
-                            data-tooltip-style="light" type="button">
-                            <i class="ml-2 text-sm text-green-500 fa-solid fa-circle-exclamation"></i>
-                        </button>
                     </label>
-
-                    <div id="tooltip-light" role="tooltip"
-                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
-                        Random url's have random url names also do not have statistical data
-                        <div class="tooltip-arrow" data-popper-arrow></div>
-                    </div>
-
 
                 </div>
 
@@ -38,16 +33,7 @@
                     <label for="url-2"
                         class="block ml-2 text-sm font-medium text-gray-900 lg:text-lg dark:text-gray-300">
                         Personalized Url
-                        <button data-tooltip-placement="right" data-tooltip-target="tooltip-2"
-                            data-tooltip-style="light" type="button">
-                            <i class="ml-2 text-sm text-green-500 fa-solid fa-circle-exclamation"></i>
-                        </button>
                     </label>
-                    <div id="tooltip-2" role="tooltip"
-                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
-                        Personalized url do have custom url names also do have statistical data .
-                        <div class="tooltip-arrow" data-popper-arrow></div>
-                    </div>
                 </div>
 
                 <div class="flex flex-wrap mt-12">
@@ -63,6 +49,82 @@
                     </button>
 
                 </div>
+                <!--modal-->
+            <TransitionRoot appear :show="isOpen" as="template">
+            <Dialog as="div" @close="closeModal" class="relative z-10">
+                <TransitionChild
+                as="template"
+                enter="duration-300 ease-out"
+                enter-from="opacity-0"
+                enter-to="opacity-100"
+                leave="duration-200 ease-in"
+                leave-from="opacity-100"
+                leave-to="opacity-0"
+                >
+                <div class="fixed inset-0 bg-black bg-opacity-25" />
+                </TransitionChild>
+
+                <div class="fixed inset-0 overflow-y-auto">
+                <div
+                    class="flex items-center justify-center min-h-full p-4 text-center"
+                >
+                    <TransitionChild
+                    as="template"
+                    enter="duration-300 ease-out"
+                    enter-from="opacity-0 scale-95"
+                    enter-to="opacity-100 scale-100"
+                    leave="duration-200 ease-in"
+                    leave-from="opacity-100 scale-100"
+                    leave-to="opacity-0 scale-95"
+                    >
+                    <DialogPanel
+                        class="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl"
+                    >
+                        <DialogTitle
+                        as="h3"
+                        class="text-lg font-medium leading-6 text-gray-900"
+                        >
+                        Types of Url's
+                        </DialogTitle>
+                        <div class="mt-4">
+                            <Disclosure v-slot="{ open }">
+                            <DisclosureButton
+                                class="flex justify-between w-full px-4 py-3 text-sm font-medium text-left text-blue-500 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
+                            >
+                                <span>Random Url</span>
+                                <ChevronUpIcon
+                                :class="open ? 'rotate-180 transform' : ''"
+                                class="w-5 h-5 text-blue-500"
+                                />
+                            </DisclosureButton>
+                            <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
+                                Random url's have random url names also do not have statistical data
+                            </DisclosurePanel>
+                            </Disclosure>
+
+                            <Disclosure v-slot="{ open }" as="div" class="mt-4">
+                            <DisclosureButton
+                                class="flex justify-between w-full px-4 py-3 text-sm font-medium text-left text-blue-500 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
+                            >
+                                <span> Personalized Url</span>
+                                <ChevronUpIcon
+                                :class="open ? 'rotate-180 transform' : ''"
+                                class="w-5 h-5 text-blue-500"
+                                />
+                            </DisclosureButton>
+                            <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
+                                Personalized url do have custom url names also do have statistical data .
+                            </DisclosurePanel>
+                            </Disclosure>
+                        </div>
+
+                    </DialogPanel>
+                    </TransitionChild>
+                </div>
+                </div>
+            </Dialog>
+            </TransitionRoot>
+
             </div>
 
             <div v-if="step == 2 && form.url_type == '1'">
@@ -252,18 +314,23 @@
 <script>
 import AuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
-import { Inertia } from '@inertiajs/inertia'
 import SuccessAlert from '@/Components/SuccessAlert.vue';
 import axios from 'axios';
+import {TransitionRoot,TransitionChild,Dialog,DialogPanel,DialogTitle,Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
+import { ChevronUpIcon } from '@heroicons/vue/20/solid';
+import 'flowbite';
 
 export default {
     name: "register-url",
     components: {
-        AuthenticatedLayout,
-        Link,
-        Head,
-        SuccessAlert,
-    },
+    AuthenticatedLayout,
+    Link,
+    Head,
+    SuccessAlert,
+    TransitionRoot,TransitionChild,Dialog,DialogPanel,DialogTitle,
+    Disclosure, DisclosureButton, DisclosurePanel,
+    ChevronUpIcon,
+},
     setup() {
         const form = useForm({
             short_url: null,
@@ -286,7 +353,8 @@ export default {
             width: 0,
             url_length: 5,
             random_clicks: 0,
-            premiumAlertForExipiry: false
+            premiumAlertForExipiry: false,
+            isOpen: false,
 
         }
     },
@@ -366,7 +434,13 @@ export default {
                 .then(response => {
                     this.form.short_url = response.data
                 })
-        }
+        },
+        openModal(){
+            this.isOpen=true;
+        },
+        closeModal(){
+          this.isOpen=false;
+        },
 
     }
 }

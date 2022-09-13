@@ -28,11 +28,6 @@ Route::get('/', function () {
     ]);
 })->name('welcome-page');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
 Route::prefix('/short-url')->group(function()
 {
     Route::get('/new',[UrlController::class,'index'])->name('url-create');

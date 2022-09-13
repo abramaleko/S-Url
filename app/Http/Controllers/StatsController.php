@@ -58,6 +58,7 @@ class StatsController extends Controller
         }
          $stats['most_used_chart']=$this->getGroupedDeviceVisits($grouped_visits); //data for the pie-chart
          $stats['most_used_browser']=$this->getMostUsedBrowser($url->id,$url->visits);
+         $stats['refer_urls']=$this->getMostReferUrl($url->id);
 
         return Inertia::render('Url/Statisitcs/UrlInfo',[
             'stats' => $stats,
@@ -134,6 +135,17 @@ class StatsController extends Controller
         }
         else
         return 'NULL';
+    }
+
+    public function getMostReferUrl($url_id)
+    {
+        $refer_urls=ShortURLVisit::where('short_url_id',$url_id)
+        ->select('referer_url', DB::raw('count(*) as total'))
+        ->groupBy('referer_url')
+        ->get()
+        ->take(5);
+
+        return $refer_urls;
     }
 
 

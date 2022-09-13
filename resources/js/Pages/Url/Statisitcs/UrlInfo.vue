@@ -48,7 +48,7 @@ export default {
     </div>
     <div class="flex flex-wrap mt-4">
       <div class="w-full px-4 mb-12 xl:w-8/12 xl:mb-0">
-        <card-page-visits />
+        <card-page-visits :refer_urls="stats['refer_urls']" />
       </div>
       <div class="w-full px-4 xl:w-4/12">
         <card-social-traffic />

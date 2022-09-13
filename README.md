@@ -20,7 +20,7 @@ This url's have custom names which will redirect you to your desire url and also
  - Which devices are mostly viewing your url. ✅
  - At what time is the url mostly visited 
  - Visit rate in comparision with the previous week. ✅
- - Social traffic coming from
+ - Social traffic coming from ✅
  - Most useed browser in which os ✅
 
 
@@ -35,5 +35,7 @@ This type of url which can be used only once and also can be custom or random ur
 - User Profile
 - Implement payment methods
 - Add trash bin for viewing deleted urls
+- Remove redirect to dashboard after logging in  ✅
+- Fix tooltip not loading untill full reload
 
 

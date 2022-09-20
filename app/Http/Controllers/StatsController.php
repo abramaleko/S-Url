@@ -40,7 +40,8 @@ class StatsController extends Controller
 
         $grouped_visits_per_day=$this->getGroupedVisits($url);
 
-        $stats['average_clicks']=round($stats['total_visits']/count($grouped_visits_per_day));
+
+        $stats['average_clicks']= round($stats['total_visits'] / 7);  //get average click per day
 
         $stats['clicksHistory']=$this->getClicksHistory($grouped_visits_per_day);
 

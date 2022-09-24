@@ -1,6 +1,6 @@
 <?php
 
-namespace AshAllenDesign\ShortURL\Models;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -54,6 +54,8 @@ class ShortURLVisit extends Model
         'visited_at',
         'referer_url',
         'device_type',
+        'location_country',
+        'location_city'
     ];
 
     /**

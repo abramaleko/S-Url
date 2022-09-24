@@ -68,7 +68,8 @@ class ShortURL extends Model
         'activated_at',
         'deactivated_at',
         'user_id',
-        'url_type'
+        'url_type',
+        'track_location'
     ];
 
     /**
@@ -100,6 +101,8 @@ class ShortURL extends Model
         'track_referer_url'              => 'boolean',
         'track_device_type'              => 'boolean',
         'deactivated_at' => 'datetime:Y-m-d',
+        'track_location'               => 'boolean',
+
 
     ];
 
@@ -186,6 +189,11 @@ class ShortURL extends Model
         if ($this->track_device_type) {
             $fields[] = 'device_type';
         }
+
+        if ($this->track_location) {
+            $fields[] = 'track_location';
+        }
+
 
         return $fields;
     }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use AshAllenDesign\ShortURL\Classes\Resolver;
-use AshAllenDesign\ShortURL\Models\ShortURL;
+use App\Classes\Resolver;
+use App\Models\ShortURL;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 

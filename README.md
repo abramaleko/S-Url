@@ -16,9 +16,8 @@ This url's have custom names which will redirect you to your desire url and also
 
 ### Statistical Data includes
  - Total as no of clicks with comparison with average no of clicks ✅
- - Location wise where there url's are located 
+ - Location wise where there url's visitors are located 
  - Which devices are mostly viewing your url. ✅
- - At what time is the url mostly visited 
  - Visit rate in comparision with the previous week. ✅
  - Social traffic coming from ✅
  - Most useed browser in which os ✅
@@ -37,5 +36,7 @@ This type of url which can be used only once and also can be custom or random ur
 - Add trash bin for viewing deleted urls
 - Remove redirect to dashboard after logging in  ✅
 - Fix tooltip not loading untill full reload
+Shift the builder class from vendor folder  to normal and add set the location insertion in the insertion model, ✅
+Do not show the stats page untill there are visits
 
 

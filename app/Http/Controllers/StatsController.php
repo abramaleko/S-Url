@@ -54,12 +54,18 @@ class StatsController extends Controller
              foreach ($grouped_visits as $key => $visit) {
               $devices_url_count[$key] = count($visit);
              }
-             $value=max($grouped_visits); //sorting which has the highest value of the devicess visits
-             $stats['most_used_device']=ucfirst(array_search($value,$grouped_visits));
+             if ($grouped_visits) {
+                $value=max($grouped_visits); //sorting which has the highest value of the devicess visits
+                $stats['most_used_device']=ucfirst(array_search($value,$grouped_visits));
+             }
+             else {
+                $stats['most_used_device']='NIL';
+             }
         }
          $stats['most_used_chart']=$this->getGroupedDeviceVisits($grouped_visits); //data for the pie-chart
          $stats['most_used_browser']=$this->getMostUsedBrowser($url->id,$url->visits);
          $stats['refer_urls']=$this->getMostReferUrl($url->id);
+         $stats['ipLocations'] = $this->getIpLocations($url->id);
 
         return Inertia::render('Url/Statisitcs/UrlInfo',[
             'stats' => $stats,
@@ -118,7 +124,7 @@ class StatsController extends Controller
 
     public function getMostUsedBrowser($id,$visits){
         $dataset=[];
-        if ($visits) {
+        if (! $visits->isEmpty()) {
             $browserVisits=ShortURLVisit::where('short_url_id',$id)
             ->select('browser', DB::raw('count(*) as total'))
             ->groupBy('browser')
@@ -135,7 +141,7 @@ class StatsController extends Controller
             return $dataset;
         }
         else
-        return 'NULL';
+        return 'NIL';
     }
 
     public function getMostReferUrl($url_id)
@@ -147,6 +153,14 @@ class StatsController extends Controller
         ->take(5);
 
         return $refer_urls;
+    }
+
+    public function getIpLocations($url_id)
+    {
+        $ip_address=ShortURLVisit::where('short_url_id',$url_id)
+        ->select('ip_address', DB::raw('count(*) as total'))
+        ->groupBy('ip_address')
+        ->get();
     }
 
 

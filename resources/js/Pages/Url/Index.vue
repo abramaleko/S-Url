@@ -142,7 +142,7 @@
                                 <div class="relative flex flex-wrap items-stretch w-full mb-4">
                                     <div class="flex -mr-px bg-blueGray-200">
                                         <span
-                                            class="flex items-center px-3 text-sm leading-normal whitespace-no-wrap border border-r-0 rounded rounded-r-none bg-grey-lighter border-grey-light text-grey-dark">{{ app_url }}visit/</span>
+                                            class="flex items-center px-3 text-sm leading-normal whitespace-no-wrap border border-r-0 rounded rounded-r-none bg-grey-lighter border-grey-light text-grey-dark">{{ app_url }}/visit/</span>
                                     </div>
                                     <input type="text" v-model="form.short_url" @blur="checkUrlAvailabilty"
                                         id="short-url" disabled

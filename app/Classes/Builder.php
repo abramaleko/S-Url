@@ -57,11 +57,21 @@ class Builder
 
     /**
      * Whether or not if the short URL should track
-     * statistics about the visitors.
+     * statistics about the visitors,
+     * by default it is set to false.
      *
      * @var bool|null
      */
-    protected $trackVisits;
+    protected $trackVisits=false;
+
+       /**
+     * Whether or not if the short URL should track
+     * the location of the visitors.
+     *
+     * @var bool|null
+     */
+    protected $trackLocation;
+
 
     /**
      * This can hold a custom URL key that might be
@@ -283,6 +293,8 @@ class Builder
     public function trackVisits(bool $trackUrlVisits = true): self
     {
         $this->trackVisits = $trackUrlVisits;
+
+        $this->trackLocation = true;
 
         return $this;
     }
@@ -524,7 +536,9 @@ class Builder
             'activated_at'                   => $this->activateAt,
             'deactivated_at'                 => $this->deactivateAt,
             'user_id'                        =>  $this->user_id,
-            'url_type'                       => $this->url_type
+            'url_type'                       => $this->url_type,
+            'track_location'                 => $this->trackLocation
+
         ]);
     }
 
